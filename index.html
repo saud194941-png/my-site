@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>يوم التأسيس السعودي 2026</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Tajawal', sans-serif; }
+        .font-amiri { font-family: 'Amiri', serif; }
+        html, body { height: 100%; margin: 0; padding: 0; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(180, 83, 9, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(217, 119, 6, 0.8); }
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { background-position: 200% center; }
+            50% { background-position: -200% center; }
+        }
+        
+        @keyframes bounce-in {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+        .animate-slide-in-right { animation: slideInRight 0.8s ease-out; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
+        .animate-bounce-in { animation: bounce-in 0.6s ease-out; }
+        
+        .scroll-hidden { opacity: 0; transform: translateY(40px); transition: all 0.6s ease-out; }
+        .scroll-visible { opacity: 1; transform: translateY(0); }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .gradient-badge {
+            background: linear-gradient(135deg, #D97706, #92400E);
+            color: white;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #92400E, #D97706);
+            z-index: 999;
+            transition: width 0.1s;
+            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.5);
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: fadeInUp 0.3s ease-out;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-right: 30px;
+            border-right: 3px solid #D97706;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            right: -15px;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 4px solid #D97706;
+            border-radius: 50%;
+        }
+        
+        .event-card {
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(217, 119, 6, 0.2);
+        }
+        
+        .hidden-symbol {
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0.2;
+            font-size: 24px;
+        }
+        
+        .hidden-symbol:hover { opacity: 0.5; transform: scale(1.1); }
+        .hidden-symbol.found { opacity: 1; transform: scale(1.3); }
+        
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: #92400E;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 1000;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        
+        .achievement-badge {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 10px auto;
+            animation: bounce-in 0.6s ease-out;
+        }
+        
+        .achievement-badge:hover { transform: scale(1.1) rotate(5deg); }
+        
+        .achievement-star {
+            color: #FCD34D;
+            font-size: 24px;
+            animation: spin-slow 4s linear infinite;
+        }
+        
+        .interactive-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.5s;
+        }
+        
+        .interactive-btn:hover::before {
+            left: 100%;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FEF3C7; }
+        ::-webkit-scrollbar-thumb { background: #92400E; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #78350F; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #FCD34D, #FBBF24);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #92400E;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #78350F;
+        }
+
+        #mainContainer {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="h-full bg-amber-50 overflow-hidden m-0 p-0" id="app">
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Welcome Modal -->
+    <div class="modal-overlay" id="welcomeModal">
+        <div class="modal-content text-center max-w-md">
+            <div class="text-6xl mb-4 animate-bounce">🇸🇦</div>
+            <h2 class="text-3xl font-bold text-amber-900 mb-3 font-amiri">أهلاً بك 2026</h2>
+            <p class="text-amber-700 mb-6">استكشف 300 سنة من العزة والانجازات</p>
+            <button onclick="closeWelcomeModal()" class="bg-gradient-to-r from-amber-700 to-amber-900 text-white px-8 py-3 rounded-full font-bold hover:shadow-lg transition-all">ابدأ الرحلة</button>
+        </div>
+    </div>
+    
+    <!-- Timeline Modal -->
+    <div class="modal-overlay" id="timelineModal">
+        <div class="modal-content max-w-md">
+            <button onclick="closeTimelineModal()" class="float-left text-amber-600 hover:text-amber-800 text-2xl mb-2">✕</button>
+            <div id="timelineModalContent" class="clear-both"></div>
+        </div>
+    </div>
+    
+    <!-- Achievement Modal -->
+    <div class="modal-overlay" id="achievementModal">
+        <div class="modal-content max-w-sm text-center">
+            <div class="text-5xl mb-3 animate-bounce">🏆</div>
+            <h3 class="text-2xl font-bold text-amber-900 mb-2" id="achievementTitle"></h3>
+            <p class="text-amber-700 mb-4" id="achievementDesc"></p>
+            <button onclick="closeAchievementModal()" class="bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800">رائع!</button>
+        </div>
+    </div>
+    
+    <!-- Certificate Modal -->
+    <div class="modal-overlay" id="certificateModal">
+        <div class="modal-content max-w-md text-center">
+            <button onclick="closeCertificateModal()" class="float-left text-amber-600 hover:text-amber-800 text-2xl">✕</button>
+            <div id="certificateContent" class="clear-both"></div>
+        </div>
+    </div>
+    
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span id="toastText"></span>
+    </div>
+    
+    <main class="w-full h-full overflow-y-auto" id="mainContainer">
+        <!-- Hero Section -->
+        <section class="min-h-screen w-full relative flex items-center justify-center bg-gradient-to-b from-amber-950 via-amber-900 to-amber-800 text-white overflow-hidden">
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-10 right-10 w-40 h-40 animate-spin-slow">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1" class="text-amber-200">
+                        <polygon points="50,5 95,25 95,75 50,95 5,75 5,25"/>
+                    </svg>
+                </div>
+                <div class="absolute bottom-20 left-5 w-32 h-32 animate-float opacity-30">
+                    <svg viewBox="0 0 100 100" fill="currentColor" class="text-amber-600">
+                        <circle cx="50" cy="50" r="40"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="relative z-10 text-center px-6 py-12">
+                <div class="inline-block mb-6 animate-bounce">
+                    <span class="text-7xl">🇸🇦</span>
+                </div>
+                
+                <h1 id="mainTitle" class="text-5xl md:text-6xl font-bold font-amiri mb-4 animate-fade-in-up leading-tight">يوم التأسيس السعودي</h1>
+                
+                <p class="inline-block gradient-badge animate-slide-in-right" style="animation-delay: 0.2s;">السنة 300 من العزة</p>
+                
+                <p id="mainSubtitle" class="text-2xl md:text-3xl text-amber-200 mb-8 animate-fade-in-up" style="animation-delay: 0.3s;">ثلاثمائة سنة من المجد والعراقة</p>
+                
+                <!-- Countdown -->
+                <div class="flex justify-center gap-3 mb-8 flex-wrap" id="countdown">
+                    <div class="glass-card rounded-lg p-4 min-w-[70px] animate-fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="text-3xl font-bold text-amber-800" id="days">00</div>
+                        <div class="text-xs text-amber-600">يوم</div>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 min-w-[70px] animate-fade-in-up" style="animation-delay: 0.45s;">
+                        <div class="text-3xl font-bold text-amber-800" id="hours">00</div>
+                        <div class="text-xs text-amber-600">ساعة</div>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 min-w-[70px] animate-fade-in-up" style="animation-delay: 0.5s;">
+                        <div class="text-3xl font-bold text-amber-800" id="minutes">00</div>
+                        <div class="text-xs text-amber-600">دقيقة</div>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 min-w-[70px] animate-fade-in-up" style="animation-delay: 0.55s;">
+                        <div class="text-3xl font-bold text-amber-800" id="seconds">00</div>
+                        <div class="text-xs text-amber-600">ثانية</div>
+                    </div>
+                </div>
+                
+                <button onclick="scrollToContent()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-10 py-4 rounded-full text-lg font-bold transition-all animate-pulse-glow interactive-btn">
+                    ابدأ الاستكشاف ↓
+                </button>
+                
+                <div class="hidden-symbol absolute bottom-16 right-10" onclick="foundSymbol(1)" data-symbol="1">☪</div>
+            </div>
+        </section>
+        
+        <!-- Statistics Section -->
+        <section class="w-full py-16 px-6 bg-gradient-to-b from-amber-900 to-amber-800 text-white">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold font-amiri text-center mb-12 scroll-hidden">الإحصائيات والإنجازات</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card scroll-hidden" style="animation-delay: 0s;">
+                        <div class="stat-number">300</div>
+                        <div class="stat-label">سنة من التاريخ العريق</div>
+                    </div>
+                    <div class="stat-card scroll-hidden" style="animation-delay: 0.1s;">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">دول سعودية عظيمة</div>
+                    </div>
+                    <div class="stat-card scroll-hidden" style="animation-delay: 0.2s;">
+                        <div class="stat-number">+50M</div>
+                        <div class="stat-label">نسمة بناة المستقبل</div>
+                    </div>
+                    <div class="stat-card scroll-hidden" style="animation-delay: 0.3s;">
+                        <div class="stat-number">2030</div>
+                        <div class="stat-label">رؤية تحديث المملكة</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-amber-100 to-amber-50">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">النبذة التاريخية</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 mb-8 scroll-hidden">جذور الحضارة والعزة</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="glass-card rounded-2xl p-8 scroll-hidden">
+                        <div class="text-6xl mb-4">📜</div>
+                        <h3 class="text-2xl font-bold text-amber-900 mb-3 font-amiri">البداية العظيمة</h3>
+                        <p class="text-lg text-amber-900 leading-relaxed">
+                            في سنة <strong>1727م</strong>، أسس الإمام <strong>محمد بن سعود</strong> الدولة السعودية الأولى من قلب الدرعية، ليبدأ فصل جديد من التوحيد والعزة في شبه الجزيرة العربية.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8 scroll-hidden" style="animation-delay: 0.2s;">
+                        <div class="text-6xl mb-4">🏛️</div>
+                        <h3 class="text-2xl font-bold text-amber-900 mb-3 font-amiri">الحاضر المشرق</h3>
+                        <p class="text-lg text-amber-900 leading-relaxed">
+                            بعد قرون من الإرث الحضاري، تقف المملكة اليوم <strong>رائدة إقليمية</strong> تسعى لبناء مستقبل مزدهر وفق رؤية 2030 الطموحة.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="glass-card rounded-lg p-6 text-center scroll-hidden">
+                        <div class="text-4xl font-bold text-amber-700 mb-2">1727</div>
+                        <div class="text-sm text-amber-700 font-bold">سنة التأسيس</div>
+                    </div>
+                    <div class="glass-card rounded-lg p-6 text-center scroll-hidden" style="animation-delay: 0.1s;">
+                        <div class="text-4xl mb-2">🏛️</div>
+                        <div class="text-sm text-amber-700 font-bold">الدرعية المشرفة</div>
+                    </div>
+                    <div class="glass-card rounded-lg p-6 text-center scroll-hidden" style="animation-delay: 0.2s;">
+                        <div class="text-4xl mb-2">👑</div>
+                        <div class="text-sm text-amber-700 font-bold">قيادة رشيدة</div>
+                    </div>
+                    <div class="glass-card rounded-lg p-6 text-center scroll-hidden" style="animation-delay: 0.3s;">
+                        <div class="text-4xl mb-2">🚀</div>
+                        <div class="text-sm text-amber-700 font-bold">مستقبل مزدهر</div>
+                    </div>
+                </div>
+                
+                <div class="hidden-symbol absolute left-10 text-amber-400" onclick="foundSymbol(2)" data-symbol="2">🌴</div>
+            </div>
+        </section>
+        
+        <!-- Timeline Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-amber-50 to-amber-100">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">المسيرة التاريخية</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 mb-12 scroll-hidden">الخط الزمني العظيم</h2>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="timeline-item glass-card rounded-xl p-6 cursor-pointer hover:shadow-xl transition-all scroll-hidden event-card" onclick="openTimelineModal('first')">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-5xl">🏰</div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-amber-900 font-amiri">الدولة السعودية الأولى</h3>
+                                <p class="text-amber-700 font-bold text-lg">1727م - 1818م</p>
+                                <p class="text-sm text-amber-600 mt-3">تأسيس الإمام محمد بن سعود والشيخ محمد بن عبدالوهاب</p>
+                                <div class="text-xs text-amber-500 mt-2">📍 الدرعية | 👥 90 سنة من الازدهار</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item glass-card rounded-xl p-6 cursor-pointer hover:shadow-xl transition-all scroll-hidden event-card" onclick="openTimelineModal('second')" style="animation-delay: 0.1s;">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-5xl">⚔️</div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-amber-900 font-amiri">الدولة السعودية الثانية</h3>
+                                <p class="text-amber-700 font-bold text-lg">1824م - 1891م</p>
+                                <p class="text-sm text-amber-600 mt-3">إعادة التأسيس من الإمام تركي بن عبدالله</p>
+                                <div class="text-xs text-amber-500 mt-2">📍 الرياض | 👥 67 سنة من الاستعادة</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item glass-card rounded-xl p-6 cursor-pointer hover:shadow-xl transition-all scroll-hidden event-card" onclick="openTimelineModal('third')" style="animation-delay: 0.2s;">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-5xl">🇸🇦</div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-amber-900 font-amiri">المملكة العربية السعودية</h3>
+                                <p class="text-amber-700 font-bold text-lg">1902م - الحاضر</p>
+                                <p class="text-sm text-amber-600 mt-3">توحيد الملك عبدالعزيز وبناء الدولة الحديثة</p>
+                                <div class="text-xs text-amber-500 mt-2">📍 الرياض | 👥 122+ سنة من الحكمة</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Vision 2030 Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-amber-100 to-blue-50">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">رؤية المستقبل</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 mb-8 scroll-hidden">رؤية 2030</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="glass-card rounded-xl p-8 event-card scroll-hidden">
+                        <div class="text-5xl mb-4">🌍</div>
+                        <h3 class="text-lg font-bold text-amber-900 mb-3">اقتصاد متنوع</h3>
+                        <p class="text-sm text-amber-700">بناء اقتصاد قوي ومستدام بعيداً عن الاعتماد على النفط</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-8 event-card scroll-hidden" style="animation-delay: 0.1s;">
+                        <div class="text-5xl mb-4">👥</div>
+                        <h3 class="text-lg font-bold text-amber-900 mb-3">مجتمع حي ومحترم</h3>
+                        <p class="text-sm text-amber-700">تطوير الموارد البشرية والاستثمار في الشباب</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-8 event-card scroll-hidden" style="animation-delay: 0.2s;">
+                        <div class="text-5xl mb-4">🏆</div>
+                        <h3 class="text-lg font-bold text-amber-900 mb-3">دولة فاعلة إقليمياً</h3>
+                        <p class="text-sm text-amber-700">ريادة إقليمية ودور عالمي متميز</p>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 bg-gradient-to-r from-blue-100 to-amber-100 scroll-hidden">
+                    <h3 class="text-2xl font-bold text-amber-900 font-amiri mb-4">أهداف طموحة</h3>
+                    <div class="space-y-3 text-amber-900">
+                        <p class="flex items-start gap-3"><span class="text-2xl">✓</span> <span>زيادة الناتج المحلي الإجمالي بنسبة كبيرة</span></p>
+                        <p class="flex items-start gap-3"><span class="text-2xl">✓</span> <span>توفير ملايين الوظائف للشباب السعودي</span></p>
+                        <p class="flex items-start gap-3"><span class="text-2xl">✓</span> <span>تطوير البنية التحتية والاستثمار في التقنية</span></p>
+                        <p class="flex items-start gap-3"><span class="text-2xl">✓</span> <span>الحفاظ على القيم والهوية الإسلامية والعربية</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Achievements Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-blue-50 to-amber-50">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">الإنجازات الملموسة</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 mb-8 scroll-hidden">مسيرة النجاح</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card rounded-xl p-6 scroll-hidden">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">🏢</div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-amber-900 mb-2">مشاريع عملاقة</h3>
+                                <p class="text-sm text-amber-700">نيوم، البحر الأحمر، الدرعية بمشاريعها الحضارية</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-6 scroll-hidden" style="animation-delay: 0.1s;">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">🎓</div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-amber-900 mb-2">التعليم والابتكار</h3>
+                                <p class="text-sm text-amber-700">جامعات عالمية وشراكات بحثية دولية</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-6 scroll-hidden" style="animation-delay: 0.2s;">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">⚡</div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-amber-900 mb-2">الطاقة النظيفة</h3>
+                                <p class="text-sm text-amber-700">استثمارات ضخمة في الطاقة الشمسية والمتجددة</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-6 scroll-hidden" style="animation-delay: 0.3s;">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">🎯</div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-amber-900 mb-2">الحوكمة والشفافية</h3>
+                                <p class="text-sm text-amber-700">تحسين الخدمات الحكومية الرقمية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden-symbol absolute right-20 text-amber-400" onclick="foundSymbol(3)" data-symbol="3">⚔️</div>
+            </div>
+        </section>
+        
+        <!-- Cultural Diversity Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-amber-50 to-amber-100">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">الثقافة والتراث</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 mb-12 scroll-hidden">العمق الحضاري</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="glass-card rounded-xl overflow-hidden event-card scroll-hidden">
+                        <div class="bg-gradient-to-l from-amber-700 to-amber-600 p-6 text-white">
+                            <div class="text-4xl mb-2">🏛️</div>
+                            <h3 class="font-bold text-lg">العمارة التراثية</h3>
+                        </div>
+                        <div class="p-4 text-amber-900">بناء فريد بالطين والحجر يعكس براعة العمرانية النجدية</div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden event-card scroll-hidden" style="animation-delay: 0.1s;">
+                        <div class="bg-gradient-to-l from-amber-700 to-amber-600 p-6 text-white">
+                            <div class="text-4xl mb-2">🎭</div>
+                            <h3 class="font-bold text-lg">الفنون الشعبية</h3>
+                        </div>
+                        <div class="p-4 text-amber-900">العرضة السعودية رمز الفخر والشجاعة والوحدة الوطنية</div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden event-card scroll-hidden" style="animation-delay: 0.2s;">
+                        <div class="bg-gradient-to-l from-amber-700 to-amber-600 p-6 text-white">
+                            <div class="text-4xl mb-2">☕</div>
+                            <h3 class="font-bold text-lg">الضيافة العربية</h3>
+                        </div>
+                        <div class="p-4 text-amber-900">القهوة والتمر رموز الكرم والترحيب والتراث الأصيل</div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden event-card scroll-hidden" style="animation-delay: 0.3s;">
+                        <div class="bg-gradient-to-l from-amber-700 to-amber-600 p-6 text-white">
+                            <div class="text-4xl mb-2">🐴</div>
+                            <h3 class="font-bold text-lg">الفروسية والخيل</h3>
+                        </div>
+                        <div class="p-4 text-amber-900">الخيل العربي الأصيل يجسد الأصالة والنبل والعزة</div>
+                    </div>
+                </div>
+                
+                <div class="hidden-symbol absolute left-20 text-amber-400" onclick="foundSymbol(4)" data-symbol="4">🐪</div>
+            </div>
+        </section>
+        
+        <!-- Quiz Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-amber-100 to-amber-200">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">اختبر معلوماتك</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 text-center mb-4 scroll-hidden">مسابقة معلومات</h2>
+                </div>
+                
+                <p class="text-center text-amber-800 mb-8 text-lg scroll-hidden">النقاط: <span id="quizScore" class="font-bold text-3xl text-amber-900">0</span>/100</p>
+                
+                <div class="glass-card rounded-2xl p-8 scroll-hidden">
+                    <div id="quizContent">
+                        <p class="text-sm text-amber-700 mb-2">السؤال <span id="questionNumber">1</span>/6</p>
+                        <div class="w-full bg-amber-200 h-1 rounded-full mb-4">
+                            <div id="progressBar2" class="bg-amber-700 h-1 rounded-full transition-all" style="width: 16%;"></div>
+                        </div>
+                        <h3 class="text-lg font-bold text-amber-900 mb-6" id="questionText"></h3>
+                        <div class="space-y-3" id="answersContainer"></div>
+                    </div>
+                    <div id="quizResult" class="hidden text-center">
+                        <div class="text-6xl mb-4" id="resultEmoji">🎉</div>
+                        <h3 class="text-2xl font-bold text-amber-900 mb-3" id="resultText"></h3>
+                        <p class="text-amber-700 mb-6 text-lg">حصلت على <strong id="finalScore"></strong> نقطة</p>
+                        <button onclick="restartQuiz()" class="bg-amber-700 text-white px-8 py-3 rounded-full font-bold hover:bg-amber-800">إعادة المسابقة</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Games Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-amber-200 to-amber-100">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">العاب تفاعلية</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 mb-12 scroll-hidden">متعة التعلم</h2>
+                </div>
+                
+                <!-- Memory Game -->
+                <div class="glass-card rounded-xl p-6 scroll-hidden mb-8 event-card">
+                    <h3 class="text-2xl font-bold text-amber-900 text-center mb-6">🧠 لعبة الذاكرة</h3>
+                    <div class="grid grid-cols-4 gap-3 mb-4" id="memoryGame"></div>
+                    <div class="text-center">
+                        <p class="text-amber-800 mb-3">الكشف عن الأزواج المتطابقة</p>
+                        <button onclick="resetMemory()" class="bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800">إعادة ابدأ</button>
+                    </div>
+                </div>
+                
+                <!-- Speed Challenge -->
+                <div class="glass-card rounded-xl p-6 scroll-hidden event-card">
+                    <h3 class="text-2xl font-bold text-amber-900 text-center mb-6">⚡ تحدي السرعة</h3>
+                    <p class="text-center text-amber-700 mb-4">اكتب: <strong>الدرعية</strong></p>
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="text-4xl font-bold text-amber-800" id="speedTimer">0.00</div>
+                        <input type="text" id="speedInput" placeholder="الدرعية" class="w-full max-w-sm px-4 py-3 rounded-lg border-2 border-amber-300 focus:border-amber-600 focus:outline-none text-center" disabled>
+                        <div class="flex gap-2">
+                            <button onclick="startSpeedChallenge()" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 font-bold">ابدأ</button>
+                            <button onclick="resetSpeedChallenge()" class="bg-amber-200 text-amber-900 px-6 py-2 rounded-full hover:bg-amber-300 font-bold">إعادة</button>
+                        </div>
+                        <p id="speedResult" class="font-bold text-lg hidden"></p>
+                    </div>
+                </div>
+                
+                <div class="hidden-symbol absolute right-20 text-amber-400" onclick="foundSymbol(5)" data-symbol="5">🗡️</div>
+            </div>
+        </section>
+        
+        <!-- Certificate Section -->
+        <section class="w-full min-h-screen py-16 px-6 bg-gradient-to-b from-amber-100 to-amber-200">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <span class="gradient-badge">شهادة المشاركة</span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-amiri text-amber-900 text-center mb-8 scroll-hidden">حقق إنجازك</h2>
+                </div>
+                
+                <div class="glass-card rounded-xl p-8 text-center scroll-hidden mb-8">
+                    <div class="text-6xl mb-4">🏆</div>
+                    <p class="text-amber-800 mb-6 text-lg">أكمل المسابقة وحصل على شهادتك الخاصة</p>
+                    <div class="flex flex-col items-center gap-4">
+                        <input type="text" id="userName" placeholder="اسمك الكريم" class="w-full max-w-xs px-4 py-3 rounded-lg border-2 border-amber-300 focus:border-amber-600 focus:outline-none text-center">
+                        <button onclick="generateCertificate()" class="bg-amber-700 text-white px-8 py-3 rounded-full font-bold hover:bg-amber-800 interactive-btn">إنشاء الشهادة 📜</button>
+                    </div>
+                </div>
+                
+                <!-- Symbols Counter -->
+                <div class="glass-card rounded-xl p-6 text-center scroll-hidden">
+                    <h3 class="font-bold text-amber-900 mb-4 text-lg">🔍 الرموز المخفية المكتشفة</h3>
+                    <div class="text-3xl mb-3">
+                        <span id="foundCount" class="font-bold text-amber-700">0</span>
+                        <span class="text-amber-700">/5</span>
+                    </div>
+                    <div class="flex justify-center gap-3 flex-wrap" id="symbolsFound">
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-xl transition-all hover:scale-110 cursor-pointer" data-found="false">☪</div>
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-xl transition-all hover:scale-110 cursor-pointer" data-found="false">🌴</div>
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-xl transition-all hover:scale-110 cursor-pointer" data-found="false">⚔️</div>
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-xl transition-all hover:scale-110 cursor-pointer" data-found="false">🐪</div>
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-xl transition-all hover:scale-110 cursor-pointer" data-found="false">🗡️</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Credits Section -->
+        <section class="w-full min-h-screen py-20 px-6 bg-gradient-to-b from-amber-200 via-amber-100 to-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="text-7xl mb-4 animate-bounce">🎓</div>
+                    <h2 class="text-5xl md:text-6xl font-bold font-amiri text-amber-900 mb-3">فريق المشروع المميز</h2>
+                    <p class="text-xl text-amber-700">تم تطوير هذا المشروع بجهود متميزة وإشراف متخصص</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Students Section -->
+                    <div class="glass-card rounded-2xl p-8 relative overflow-hidden hover:shadow-2xl transition-all transform hover:scale-105 scroll-hidden">
+                        <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-b from-amber-400 to-transparent opacity-20 rounded-full blur-2xl"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-4 text-center">👨‍💻</div>
+                            <h3 class="text-2xl font-bold text-amber-900 text-center mb-6 font-amiri">الطالبان المصممان</h3>
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl p-4 border-2 border-amber-300">
+                                    <p class="text-sm text-amber-600 font-bold">المبرمج والمصمم</p>
+                                    <p class="text-2xl font-bold text-amber-900 mt-1">سعود سعد العتيبي</p>
+                                    <p class="text-xs text-amber-600 mt-2">💡 تطوير وتصميم الواجهة</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl p-4 border-2 border-amber-300">
+                                    <p class="text-sm text-amber-600 font-bold">المبرمج والمصمم</p>
+                                    <p class="text-2xl font-bold text-amber-900 mt-1">عبدالرحمن فواز السفياني</p>
+                                    <p class="text-xs text-amber-600 mt-2">🎨 التطوير والمحتوى</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- School Section -->
+                    <div class="glass-card rounded-2xl p-8 relative overflow-hidden hover:shadow-2xl transition-all transform hover:scale-105 scroll-hidden" style="animation-delay: 0.1s;">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-b from-green-400 to-transparent opacity-20 rounded-full blur-2xl"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-4 text-center">🏫</div>
+                            <h3 class="text-2xl font-bold text-amber-900 text-center mb-6 font-amiri">المؤسسة التعليمية</h3>
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-green-100 to-green-50 rounded-xl p-4 border-2 border-green-300">
+                                    <p class="text-sm text-green-600 font-bold">المدرسة</p>
+                                    <p class="text-2xl font-bold text-green-900 mt-1">مدرسة المروة الثانوية</p>
+                                    <p class="text-xs text-green-600 mt-2">🏆 جودة وتميز تعليمي</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl p-4 border-2 border-blue-300">
+                                    <p class="text-sm text-blue-600 font-bold">المدير</p>
+                                    <p class="text-2xl font-bold text-blue-900 mt-1">أ. طلال الزهراني</p>
+                                    <p class="text-xs text-blue-600 mt-2">👨‍🏫 إشراف وتوجيه متميز</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-purple-100 to-purple-50 rounded-xl p-4 border-2 border-purple-300">
+                                    <p class="text-sm text-purple-600 font-bold">اشراف</p>
+                                    <p class="text-2xl font-bold text-purple-900 mt-1"> أ. علي عسيري - أ.سامي الزايدي</p>
+                                    <p class="text-xs text-purple-600 mt-2">------------</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Stats -->
+                <div class="glass-card rounded-2xl p-8 mb-8 bg-gradient-to-r from-amber-50 to-orange-50 scroll-hidden" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-amber-900 text-center mb-8 font-amiri">معلومات المشروع</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-amber-700 mb-2">2</div>
+                            <p class="text-sm text-amber-700 font-bold">طالب مبدع</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-green-700 mb-2">1</div>
+                            <p class="text-sm text-green-700 font-bold">مدرسة متميزة</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-blue-700 mb-2">8</div>
+                            <p class="text-sm text-blue-700 font-bold">أقسام فريدة</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-purple-700 mb-2">🏆</div>
+                            <p class="text-sm text-purple-700 font-bold">مشروع متقدم</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission Statement -->
+                <div class="glass-card rounded-2xl p-8 text-center bg-gradient-to-r from-amber-100 to-yellow-100 border-3 border-amber-400 scroll-hidden" style="animation-delay: 0.3s;">
+                    <div class="text-5xl mb-4">✨</div>
+                    <h3 class="text-2xl font-bold text-amber-900 mb-4 font-amiri">رسالتنا</h3>
+                    <p class="text-lg text-amber-900 leading-relaxed max-w-3xl mx-auto">
+                        تطوير منصة تعليمية تفاعلية تحتفي بالتراث السعودي الأصيل وتوثق مسيرة 300 سنة من العزة والحضارة، 
+                        بهدف نشر الوعي التاريخي والفخر الوطني لدى أجيالنا الجديدة. 🇸🇦
+                    </p>
+                </div>
+
+                <!-- Appreciation -->
+                <div class="mt-12 text-center scroll-hidden" style="animation-delay: 0.4s;">
+                    <p class="text-amber-900 text-lg mb-4">🙏 شكر خاص لكل من ساهم في نجاح هذا المشروع المتميز</p>
+                    <div class="flex justify-center gap-3 flex-wrap">
+                        <span class="bg-amber-200 text-amber-900 px-4 py-2 rounded-full text-sm font-bold">الإدارة المدرسية</span>
+                        <span class="bg-green-200 text-green-900 px-4 py-2 rounded-full text-sm font-bold">الطلاب المتميزون</span>
+                        <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full text-sm font-bold">الوطن الغالي</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="w-full py-16 px-6 bg-gradient-to-t from-amber-950 via-amber-900 to-amber-800 text-center text-white">
+            <div class="text-7xl mb-4">🇸🇦</div>
+            <h2 class="text-3xl md:text-4xl font-bold font-amiri mb-2">يوم التأسيس السعودي</h2>
+            <p class="text-amber-200 mb-2 text-lg">300 سنة من الفخر والعزة</p>
+            <p class="text-amber-300 mb-6 text-sm">من الدرعية إلى العالمية</p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <button onclick="shareContent()" class="bg-amber-100 text-amber-900 px-6 py-2 rounded-full text-sm font-bold hover:bg-white interactive-btn">مشاركة 📤</button>
+                <button onclick="scrollToTop()" class="bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-amber-700 interactive-btn">العودة للأعلى ⬆️</button>
+            </div>
+            <p class="text-amber-400 mt-6 text-xs">نفخر بتاريخنا ونبني مستقبلنا المشرق 🚀</p>
+        </footer>
+    </main>
+
+    <script>
+        // Config
+        const defaultConfig = {
+            main_title: 'يوم التأسيس السعودي',
+            main_subtitle: '300 سنة من العزة والريادة',
+            vision_2030_title: 'رؤية 2030',
+            celebration_events: 'احتفالات وطنية مميزة'
+        };
+        let config = { ...defaultConfig };
+        
+        // Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange: async (newConfig) => {
+                    config = { ...defaultConfig, ...newConfig };
+                    document.getElementById('mainTitle').textContent = config.main_title;
+                    document.getElementById('mainSubtitle').textContent = config.main_subtitle;
+                },
+                mapToCapabilities: () => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (cfg) => new Map([
+                    ['main_title', cfg.main_title || defaultConfig.main_title],
+                    ['main_subtitle', cfg.main_subtitle || defaultConfig.main_subtitle],
+                    ['vision_2030_title', cfg.vision_2030_title || defaultConfig.vision_2030_title],
+                    ['celebration_events', cfg.celebration_events || defaultConfig.celebration_events]
+                ])
+            });
+        }
+        
+        // Countdown
+        function updateCountdown() {
+            const target = new Date('2026-02-22T00:00:00').getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+            
+            if (diff > 0) {
+                document.getElementById('days').textContent = String(Math.floor(diff / (1000*60*60*24))).padStart(2, '0');
+                document.getElementById('hours').textContent = String(Math.floor((diff / (1000*60*60)) % 24)).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Progress bar
+        const mainContainer = document.getElementById('mainContainer');
+        mainContainer.addEventListener('scroll', () => {
+            const scrollTop = mainContainer.scrollTop;
+            const scrollHeight = mainContainer.scrollHeight - mainContainer.clientHeight;
+            document.getElementById('progressBar').style.width = (scrollTop / scrollHeight * 100) + '%';
+            
+            document.querySelectorAll('.scroll-hidden').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.8) {
+                    el.classList.add('scroll-visible');
+                }
+            });
+        });
+        
+        // Modals
+        setTimeout(() => document.getElementById('welcomeModal').classList.add('active'), 500);
+        function closeWelcomeModal() { document.getElementById('welcomeModal').classList.remove('active'); }
+        function scrollToContent() { mainContainer.scrollTo({top: mainContainer.scrollHeight, behavior:'smooth'}); }
+        function scrollToTop() { mainContainer.scrollTo({top: 0, behavior:'smooth'}); }
+        
+        // Timeline
+        const timelineData = {
+            first: { title: 'الدولة السعودية الأولى', period: '1727-1818', content: 'أسسها الإمام محمد بن سعود مع الشيخ محمد بن عبدالوهاب، فترة ذهبية من 90 سنة شهدت توحيداً وازدهاراً حضارياً' },
+            second: { title: 'الدولة السعودية الثانية', period: '1824-1891', content: 'أعاد تأسيسها الإمام تركي بن عبدالله من الرياض بعد فترة من الانقطاع، استمرت 67 سنة من الاستقرار' },
+            third: { title: 'المملكة العربية السعودية الحديثة', period: '1902-الآن', content: 'الملك عبدالعزيز وحد الجزيرة العربية عام 1902 وأعلن المملكة رسمياً 1932، بناء دولة عظمى' }
+        };
+        function openTimelineModal(p) {
+            const d = timelineData[p];
+            document.getElementById('timelineModalContent').innerHTML = `
+                <h3 class="text-2xl font-bold text-amber-900 mb-3 font-amiri">${d.title}</h3>
+                <p class="text-lg text-amber-700 font-bold mb-3">${d.period}</p>
+                <p class="text-amber-800 leading-relaxed">${d.content}</p>
+            `;
+            document.getElementById('timelineModal').classList.add('active');
+        }
+        function closeTimelineModal() { document.getElementById('timelineModal').classList.remove('active'); }
+        
+        // Quiz Enhanced
+        const quizQuestions = [
+            { q: 'متى تأسست الدولة السعودية الأولى؟', a: ['1727م ', '1818م', '1902م', '1932م'], c: 0 },
+            { q: 'من المؤسس الأول للدولة السعودية؟', a: ['الملك عبدالعزيز', 'الإمام محمد بن سعود ', 'الإمام تركي بن عبدالله', 'الشيخ محمد بن عبدالوهاب'], c: 1 },
+            { q: 'كم عدد الدول السعودية التاريخية؟', a: ['واحدة', 'اثنتان', 'ثلاث ', 'أربع'], c: 2 },
+            { q: 'ما هي العاصمة الأولى؟', a: ['الرياض', 'جدة', 'الدرعية ', 'مكة'], c: 2 },
+            { q: 'متى أعلنت المملكة بشكلها الحديث؟', a: ['1902م', '1918م', '1927م', '1932م '], c: 3 },
+            { q: 'كم سنة يبلغ عمر التأسيس السعودي حالياً؟', a: ['298 سنة', '299 سنة', '300 سنة ', '297 سنة'], c: 2 }
+        ];
+        let qIdx = 0, qScore = 0;
+        function loadQuestion() {
+            const q = quizQuestions[qIdx];
+            document.getElementById('questionNumber').textContent = qIdx + 1;
+            document.getElementById('questionText').textContent = q.q;
+            document.getElementById('progressBar2').style.width = ((qIdx + 1) / 6 * 100) + '%';
+            document.getElementById('answersContainer').innerHTML = q.a.map((a, i) => 
+                `<button onclick="checkAnswer(${i})" class="w-full p-4 rounded-lg border-2 border-amber-300 hover:border-amber-600 text-amber-900 text-right font-bold bg-white hover:bg-amber-50 transition-all">${a}</button>`
+            ).join('');
+        }
+        function checkAnswer(i) {
+            const q = quizQuestions[qIdx];
+            const btns = document.querySelectorAll('#answersContainer button');
+            btns.forEach((b, j) => {
+                b.disabled = true;
+                if (j === q.c) b.classList.add('bg-green-100', 'border-green-500');
+                else if (j === i && i !== q.c) b.classList.add('bg-red-100', 'border-red-500');
+            });
+            if (i === q.c) {
+                qScore += Math.floor(100 / 6);
+                document.getElementById('quizScore').textContent = qScore;
+            }
+            setTimeout(() => { qIdx++; qIdx < 6 ? loadQuestion() : showQuizResult(); }, 1500);
+        }
+        function showQuizResult() {
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('quizResult').classList.remove('hidden');
+            const emoji = qScore >= 80 ? '🏆' : qScore >= 60 ? '🌟' : '👍';
+            const text = qScore >= 80 ? 'ممتاز جداً!' : qScore >= 60 ? 'جيد جداً!' : 'جيد!';
+            document.getElementById('resultEmoji').textContent = emoji;
+            document.getElementById('resultText').textContent = text;
+            document.getElementById('finalScore').textContent = qScore;
+        }
+        function restartQuiz() {
+            qIdx = 0; qScore = 0;
+            document.getElementById('quizScore').textContent = 0;
+            document.getElementById('quizContent').classList.remove('hidden');
+            document.getElementById('quizResult').classList.add('hidden');
+            loadQuestion();
+        }
+        
+        // Memory Game
+        const memoryCards = ['☪', '🌴', '⚔️', '🐪', '☪', '🌴', '⚔️', '🐪'];
+        let memoryFlipped = [];
+        let memoryMatched = 0;
+        function initMemory() {
+            const game = document.getElementById('memoryGame');
+            game.innerHTML = '';
+            const shuffled = [...memoryCards].sort(() => Math.random() - 0.5);
+            shuffled.forEach((card, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-16 h-16 rounded-lg bg-amber-600 text-2xl font-bold text-white hover:bg-amber-700 transition-all';
+                btn.textContent = '?';
+                btn.dataset.index = i;
+                btn.dataset.card = card;
+                btn.onclick = () => flipMemory(i, btn);
+                game.appendChild(btn);
+            });
+        }
+        function flipMemory(i, btn) {
+            if (memoryFlipped.length >= 2 || btn.classList.contains('matched')) return;
+            btn.textContent = btn.dataset.card;
+            btn.classList.add('bg-amber-200', 'text-amber-900');
+            memoryFlipped.push({i, card: btn.dataset.card, btn});
+            
+            if (memoryFlipped.length === 2) {
+                if (memoryFlipped[0].card === memoryFlipped[1].card) {
+                    memoryFlipped.forEach(m => m.btn.classList.add('matched'));
+                    memoryMatched++;
+                    if (memoryMatched === 4) showAchievement('متقن الذاكرة', 'أكملت لعبة الذاكرة بنجاح!');
+                }
+                setTimeout(() => {
+                    memoryFlipped.forEach(m => {
+                        if (!m.btn.classList.contains('matched')) {
+                            m.btn.textContent = '?';
+                            m.btn.classList.remove('bg-amber-200', 'text-amber-900');
+                        }
+                    });
+                    memoryFlipped = [];
+                }, 1000);
+            }
+        }
+        function resetMemory() { memoryMatched = 0; memoryFlipped = []; initMemory(); }
+        
+        // Speed Challenge
+        let speedInt = null, speedT = 0;
+        function startSpeedChallenge() {
+            const inp = document.getElementById('speedInput');
+            inp.disabled = false;
+            inp.focus();
+            inp.value = '';
+            speedT = 0;
+            speedInt = setInterval(() => { speedT += 0.01; document.getElementById('speedTimer').textContent = speedT.toFixed(2); }, 10);
+            inp.oninput = function() {
+                if (this.value === 'الدرعية') {
+                    clearInterval(speedInt);
+                    document.getElementById('speedResult').textContent = `✓ رائع! أكملت في ${speedT.toFixed(2)} ثانية`;
+                    document.getElementById('speedResult').classList.remove('hidden');
+                    this.disabled = true;
+                    if (speedT < 5) showAchievement('سريع البرق', 'أكملت التحدي بسرعة مذهلة!');
+                }
+            };
+        }
+        function resetSpeedChallenge() {
+            clearInterval(speedInt);
+            document.getElementById('speedTimer').textContent = '0.00';
+            document.getElementById('speedInput').value = '';
+            document.getElementById('speedInput').disabled = true;
+            document.getElementById('speedResult').classList.add('hidden');
+        }
+        
+        // Symbols
+        let found = [];
+        function foundSymbol(n) {
+            if (found.includes(n)) return;
+            found.push(n);
+            document.querySelector(`[data-symbol="${n}"]`).classList.add('found');
+            document.querySelectorAll('#symbolsFound div')[n-1].classList.add('bg-green-400', 'scale-110');
+            document.getElementById('foundCount').textContent = found.length;
+            if (found.length === 5) showAchievement('المكتشف المتميز', 'وجدت جميع الرموز المخفية!');
+        }
+        
+        // Achievements
+        function showAchievement(title, desc) {
+            document.getElementById('achievementTitle').textContent = title;
+            document.getElementById('achievementDesc').textContent = desc;
+            document.getElementById('achievementModal').classList.add('active');
+        }
+        function closeAchievementModal() { document.getElementById('achievementModal').classList.remove('active'); }
+        
+        // Certificate
+        function generateCertificate() {
+            const name = document.getElementById('userName').value.trim();
+            if (!name) { alert('من فضلك أدخل اسمك'); return; }
+            const cert = `
+                <div class="bg-gradient-to-br from-yellow-50 to-amber-50 border-8 border-double border-amber-700 rounded-2xl p-10 text-center" style="min-height: 400px; display: flex; flex-direction: column; justify-content: center; gap: 2rem;">
+                    <div style="font-size: 3rem;">🏆</div>
+                    <h2 style="font-size: 2rem; font-weight: bold; color: #92400E; font-family: 'Amiri', serif;">شهادة تقدير</h2>
+                    <p style="font-size: 1.2rem; color: #92400E;">يشرفنا أن نمنح هذه الشهادة لـ</p>
+                    <div style="border-bottom: 3px solid #92400E; padding: 1rem; margin: 0 2rem;">
+                        <p style="font-size: 2rem; font-weight: bold; color: #92400E;">${name}</p>
+                    </div>
+                    <p style="font-size: 1rem; color: #92400E; line-height: 1.6;">لاستكماله رحلة تعلم تفاعلية عن يوم التأسيس السعودي 300 سنة من العزة والريادة</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 2rem; padding: 0 3rem; font-size: 0.9rem; color: #92400E;">
+                        <div>التاريخ: <strong>${new Date().toLocaleDateString('ar-SA')}</strong></div>
+                        <div>مدرسة المروة الثانوية - مسارات</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('certificateContent').innerHTML = cert;
+            document.getElementById('certificateModal').classList.add('active');
+        }
+        function closeCertificateModal() { document.getElementById('certificateModal').classList.remove('active'); }
+        
+        // Share
+        function shareContent() {
+            const text = 'انضم لي في استكشاف 300 سنة من العزة السعودية! 🇸🇦';
+            if (navigator.share) {
+                navigator.share({ title: 'يوم التأسيس السعودي 2026', text });
+            } else {
+                alert(text);
+            }
+        }
+        
+        // Init
+        initMemory();
+        loadQuestion();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d1ed2aea68ec1fb',t:'MTc3MTc2Njg2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
